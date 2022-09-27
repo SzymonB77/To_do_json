@@ -49,7 +49,7 @@ module Api
 
         # Only allow a list of trusted parameters through.
         def task_params
-          params.require(:task).permit(:name, :note, :is_done)
+          params.require(:task).permit(:name, :note, :is_done, :priority)
         end
     end
   end
