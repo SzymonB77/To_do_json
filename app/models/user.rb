@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  validates :email, format: { with: Devise.email_regexp }
+
   has_many :tasks
 end
