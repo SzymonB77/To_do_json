@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    # Task_controller
     class TasksController < ApplicationController
       before_action :authenticate_user!
-      before_action :set_task, only: [:show, :update, :destroy]
+      before_action :set_task, only: %i[show update destroy]
 
       # GET /tasks
       def index
@@ -42,15 +45,16 @@ module Api
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_task
-          @task = Task.find(params[:id])
-        end
 
-        # Only allow a list of trusted parameters through.
-        def task_params
-          params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date)
-        end
+      def set_task
+        @task = Task.find(params[:id])
+        # dodac komunikat o skasoaniu
+      end
+
+      # Only allow a list of trusted parameters through.
+      def task_params
+        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date)
+      end
     end
   end
 end
