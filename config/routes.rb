@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     Rails.application.routes.draw do
@@ -7,7 +9,7 @@ module Api
           resources :tasks
         end
       end
-      
+
       # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     end
   end
