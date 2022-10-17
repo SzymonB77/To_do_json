@@ -4,5 +4,6 @@ FactoryBot.define do
       name { Faker::Hobby.activity}
       note { 'note' }
       priority { 1 }
+      execution_date { Date.current }
     end
   end
