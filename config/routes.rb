@@ -3,6 +3,7 @@
 module Api
   module V1
     Rails.application.routes.draw do
+  resources :task_lists
       mount_devise_token_auth_for 'User', at: 'auth'
       namespace :api do
         namespace :v1 do
