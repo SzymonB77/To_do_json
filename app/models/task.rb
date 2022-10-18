@@ -9,10 +9,16 @@ class Task < ApplicationRecord
     only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3
   }
   belongs_to :user
+  has_one_attached :image
   # pomyslec co z update
   validate :execution_date_is_after_current_date, on: %i[create]
 
   private
+
+  # Żeby dodawać załączniki należy podpiąć chmurę, wszystko tutaj działa tylko trzeba ją dodać
+  def image_url
+    Rails.application.routes.url_for(image) if image.attached?
+  end
 
   # Testy zaczely sie wywalac po dodaniu tego
   def execution_date_is_after_current_date
