@@ -48,12 +48,11 @@ module Api
 
       def set_task
         @task = Task.find(params[:id])
-        # dodac komunikat o skasoaniu
+        # dodac komunikat o skasowaniu
       end
 
-      # Only allow a list of trusted parameters through.
       def task_params
-        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date)
+        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image)
       end
     end
   end
