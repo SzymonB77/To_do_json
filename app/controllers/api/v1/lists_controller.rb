@@ -1,19 +1,19 @@
 class ListsController < ApplicationController
   before_action :set_list, only: %i[show update destroy]
 
-  # GET /task_lists
+  # GET /lists
   def index
     @lists = List.all
 
     render json: @lists
   end
 
-  # GET /task_lists/1
+  # GET /lists/1
   def show
     render json: @list
   end
 
-  # POST /task_lists
+  # POST /lists
   def create
     @list = List.new(list_params)
 
@@ -24,7 +24,7 @@ class ListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /task_lists/1
+  # PATCH/PUT /lists/1
   def update
     if @list.update(list_params)
       render json: @list
@@ -33,13 +33,14 @@ class ListsController < ApplicationController
     end
   end
 
-  # DELETE /task_lists/1
+  # DELETE /lists/1
   def destroy
     @list.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_list
       @list = List.find(params[:id])
     end
