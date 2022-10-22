@@ -52,7 +52,7 @@ module Api
       end
 
       def task_params
-        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image)
+        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image, :tag)
       end
     end
   end
