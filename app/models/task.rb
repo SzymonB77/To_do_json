@@ -10,6 +10,7 @@ class Task < ApplicationRecord
   }
   belongs_to :user
   has_one_attached :image
+  has_many :subtasks
   # pomyslec co z update
   validate :execution_date_is_after_current_date, on: %i[create]
 
