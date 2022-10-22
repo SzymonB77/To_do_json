@@ -8,7 +8,12 @@ module Api
       namespace :api do
         namespace :v1 do
           resources :lists
-          resources :tasks
+          resources :tasks do
+            member do
+              post :add_list
+              delete :delete_list
+            end
+          end
         end
       end
 
