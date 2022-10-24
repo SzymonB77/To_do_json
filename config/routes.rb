@@ -8,7 +8,13 @@ module Api
       namespace :api do
         namespace :v1 do
           resources :lists
-          resources :tasks
+          resources :tasks do
+            resources :subtasks, only: %i[create update destroy]
+            member do
+              post :add_list
+              delete :delete_list
+            end
+          end
         end
       end
 

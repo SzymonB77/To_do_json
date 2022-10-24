@@ -4,12 +4,16 @@
 class Task < ApplicationRecord
   validates :name, presence: true
   validates :execution_date, presence: true
+  #validates :list_id, presence: true
 
   validates :priority, numericality: {
     only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3
   }
   belongs_to :user
   has_one_attached :image
+  has_many :subtasks
+  has_many :tasks_lists
+  has_many :lists, through: :tasks_lists
   # pomyslec co z update
   validate :execution_date_is_after_current_date, on: %i[create]
 
@@ -19,9 +23,7 @@ class Task < ApplicationRecord
 
   private
 
-  # Żeby dodawać załączniki należy podpiąć chmurę, wszystko tutaj działa tylko trzeba ją dodać
-
-  # Testy zaczely sie wywalac po dodaniu tego
+   # Testy zaczely sie wywalac po dodaniu tego
   def execution_date_is_after_current_date
     return unless execution_date < Date.current
 

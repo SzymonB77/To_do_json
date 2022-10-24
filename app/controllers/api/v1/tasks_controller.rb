@@ -5,7 +5,8 @@ module Api
     # Task_controller
     class TasksController < ApplicationController
       before_action :authenticate_user!
-      before_action :set_task, only: %i[show update destroy]
+      before_action :set_task, only: %i[show update destroy add_list delete_list]
+      before_action :set_list, only: %i[add_list delete_list]
 
       # GET /tasks
       def index
@@ -44,6 +45,29 @@ module Api
         @task.destroy
       end
 
+      # sss
+      def add_list
+        tasks_lists = TasksList.new(
+          task: @task,
+          list: @list
+        )
+        if tasks_lists.save
+          render json: tasks_lists
+        else
+          render json: { errors: tasks_lists.errors.messages }, status: :unprocessable_entity
+        end
+      end
+
+      # aaa
+      def delete_list
+        tasks_lists = @task.tasks_lists.find_by!(list_id: @list.id)
+        if tasks_lists.destroy
+          render json: tasks_lists
+        else
+          render json: { errors: @list.errors.to_s }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def set_task
@@ -51,8 +75,16 @@ module Api
         # dodac komunikat o skasowaniu
       end
 
+      def set_list
+        @list = List.find(params[:list_id])
+      end
+
       def task_params
         params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image, :tag)
+      end
+
+      def list_params
+        params.require(:list).permit(:title)
       end
     end
   end
