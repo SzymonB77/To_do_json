@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2022_10_22_142316) do
-
+ActiveRecord::Schema.define(version: 2022_10_22_183549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +66,8 @@ ActiveRecord::Schema.define(version: 2022_10_22_142316) do
     t.bigint "user_id"
     t.integer "priority"
     t.date "execution_date"
+    t.jsonb "tag"
+    t.index ["tag"], name: "index_tasks_on_tag", using: :gin
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
