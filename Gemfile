@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'devise_token_auth', '~> 1.2.0'
+gem 'whenever', '~> 1.0', require: false
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
