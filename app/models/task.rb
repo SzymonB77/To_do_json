@@ -11,7 +11,7 @@ class Task < ApplicationRecord
   }
   belongs_to :user
   has_one_attached :image
-
+  has_many :subtasks
   has_many :tasks_lists
   has_many :lists, through: :tasks_lists
   # pomyslec co z update
