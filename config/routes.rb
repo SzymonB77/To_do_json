@@ -10,6 +10,10 @@ module Api
           resources :lists
           resources :tasks do
             resources :subtasks, only: %i[create update destroy]
+            member do
+              post :add_list
+              delete :delete_list
+            end
           end
         end
       end
