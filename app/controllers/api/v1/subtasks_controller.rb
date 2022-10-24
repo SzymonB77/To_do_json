@@ -3,6 +3,7 @@
 module Api
   module V1
     class SubtasksController < ApplicationController
+      before_action :authenticate_user!
       before_action :set_subtask, only: %i[update destroy]
       
       # POST /tasks/:id/subtasks
