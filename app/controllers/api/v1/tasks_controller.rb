@@ -7,10 +7,11 @@ module Api
       before_action :authenticate_user!
       before_action :set_task, only: %i[show update destroy add_list delete_list]
       before_action :set_list, only: %i[add_list delete_list]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       # GET /tasks
       def index
-        @tasks = Task.all
+        @pagy, @tasks = pagy(Task.all)
 
         render json: @tasks
       end

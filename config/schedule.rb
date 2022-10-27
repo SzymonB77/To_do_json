@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "log/cron.log"
+set :output, 'log/cron.log'
 
 every 1.day, at: '9:30 am' do
   runner "puts 'Remember to plan your day'"

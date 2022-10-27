@@ -6,10 +6,11 @@ module Api
     class ListsController < ApplicationController
       before_action :authenticate_user!
       before_action :set_list, only: %i[show update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       # GET /lists
       def index
-        @lists = List.all
+        @pagy, @lists = pagy(List.all)
 
         render json: @lists
       end
