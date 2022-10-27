@@ -31,6 +31,8 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'devise_token_auth', '~> 1.2.0'
 gem 'whenever', '~> 1.0', require: false
 
+gem 'pagy', '~> 5.10'
+
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
 end
