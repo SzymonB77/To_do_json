@@ -8,10 +8,17 @@ module Api
       before_action :set_task, only: %i[show update destroy add_list delete_list]
       before_action :set_list, only: %i[add_list delete_list]
       after_action { pagy_headers_merge(@pagy) if @pagy }
+      with_options only: :index do
+        has_scope :done, type: :boolean
+        has_scope :by_priority
+        has_scope :by_tags
+        has_scope :by_color
+        has_scope :by_execution_date, type: :boolean
+      end
 
       # GET /tasks
       def index
-        @pagy, @tasks = pagy(Task.all)
+        @pagy, @tasks = pagy(apply_scopes(Task.all))
 
         render json: @tasks
       end
@@ -81,7 +88,8 @@ module Api
       end
 
       def task_params
-        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image, :tag, :color)
+        params.require(:task).permit(:name, :note, :is_done, :priority, :execution_date, :image,
+                                     :tag, :color)
       end
 
       def list_params

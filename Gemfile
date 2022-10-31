@@ -33,6 +33,8 @@ gem 'whenever', '~> 1.0', require: false
 
 gem 'pagy', '~> 5.10'
 
+gem 'has_scope', '~> 0.8.0'
+
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
 end

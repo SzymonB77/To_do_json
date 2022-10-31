@@ -44,8 +44,6 @@ module Api
       def destroy
         @list.destroy
       end
-    
-  
 
       private
 
@@ -54,7 +52,7 @@ module Api
         @list = List.find(params[:id])
       end
 
-        # Only allow a list of trusted parameters through.
+      # Only allow a list of trusted parameters through.
       def list_params
         params.require(:list).permit(:title)
       end

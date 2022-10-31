@@ -9,6 +9,7 @@ RSpec.describe '#sign_up' do
     let(:register) do
       post '/auth', params: { email: 'example@example.com', password: '123456' }
     end
+
     it do
       expect do
         register
@@ -25,6 +26,7 @@ RSpec.describe '#sign_up' do
     let(:register) do
       post '/auth', params: { email: nil, password: '123456' }
     end
+
     it do
       expect do
         register

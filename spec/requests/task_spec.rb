@@ -28,6 +28,7 @@ RSpec.describe 'Tasks', type: :request do
       expect(response).to have_http_status(:unauthorized)
     end
   end
+
   describe 'GET /task' do
     it 'Property see first task' do
       get '/api/v1/tasks/1'
@@ -45,7 +46,8 @@ RSpec.describe 'Tasks', type: :request do
     context 'with valid parameters' do
       it 'creates a new Task' do
         expect do
-          post '/api/v1/tasks', params: { task: { name: 'test', note: 'test', priority: 1 } }, headers: auth_headers
+          post '/api/v1/tasks', params: { task: { name: 'test', note: 'test', priority: 1 } },
+                                headers: auth_headers
         end.to change(Task, :count).by(1)
       end
     end
@@ -53,7 +55,8 @@ RSpec.describe 'Tasks', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new Task' do
         expect do
-          post '/api/v1/tasks', params: { task: { name: nil, note: 'test', priority: 1 } }, headers: auth_headers
+          post '/api/v1/tasks', params: { task: { name: nil, note: 'test', priority: 1 } },
+                                headers: auth_headers
         end.to change(Task, :count).by(0)
       end
     end
@@ -63,7 +66,8 @@ RSpec.describe 'Tasks', type: :request do
     context 'with valid parameters' do
       it 'update a new Task' do
         task = FactoryBot.create :task
-        patch api_v1_task_path(id: task.id), params: { task: { name: 'test2' } }, headers: auth_headers
+        patch api_v1_task_path(id: task.id), params: { task: { name: 'test2' } },
+                                             headers: auth_headers
         task.reload
         expect(response).to have_http_status(:ok)
       end
@@ -76,6 +80,7 @@ RSpec.describe 'Tasks', type: :request do
       end
     end
   end
+
   describe 'DELETE /destroy' do
     it 'destroys the requested task' do
       task = FactoryBot.create :task

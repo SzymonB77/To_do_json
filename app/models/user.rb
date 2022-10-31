@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
 
   validates :email, format: { with: Devise.email_regexp }
 
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
 end
