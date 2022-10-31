@@ -35,7 +35,7 @@ class Task < ApplicationRecord
 
   # sort
   # by_name_alphabetically
-  scope :by_execution_date, -> { order(execution_date: :desc) }
+  scope :by_execution_date, ->(*) { order(execution_date: :asc) }
   # by_execution_date
 
 

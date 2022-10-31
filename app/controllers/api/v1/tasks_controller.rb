@@ -13,7 +13,7 @@ module Api
         has_scope :by_priority
         has_scope :by_tags
         has_scope :by_color
-        has_scope :by_execution_date
+        has_scope :by_execution_date, type: :boolean
       end
 
       # GET /tasks
