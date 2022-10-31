@@ -2,7 +2,6 @@
 
 module Api
   module V1
-    # Task_controller
     class TasksController < ApplicationController
       before_action :authenticate_user!
       before_action :set_task, only: %i[show update destroy add_list delete_list]
@@ -53,7 +52,7 @@ module Api
         @task.destroy
       end
 
-      # sss
+      # POST tasks/:id/add_list
       def add_list
         tasks_lists = TasksList.new(
           task: @task,
@@ -66,7 +65,7 @@ module Api
         end
       end
 
-      # aaa
+      # DELETE tasks/:id/delete_list
       def delete_list
         tasks_lists = @task.tasks_lists.find_by!(list_id: @list.id)
         if tasks_lists.destroy
@@ -80,7 +79,6 @@ module Api
 
       def set_task
         @task = Task.find(params[:id])
-        # dodac komunikat o skasowaniu
       end
 
       def set_list

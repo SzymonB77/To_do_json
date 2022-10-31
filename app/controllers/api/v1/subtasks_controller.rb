@@ -19,7 +19,6 @@ module Api
       end
 
       # PATCH/PUT /tasks/:id/subtasks/:id
-
       def update
         if @subtask.update(subtask_params)
           render json: @subtask
