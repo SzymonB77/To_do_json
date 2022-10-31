@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTasksLists < ActiveRecord::Migration[6.1]
   def change
     create_table :tasks_lists do |t|

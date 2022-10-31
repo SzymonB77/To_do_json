@@ -4,9 +4,8 @@ class TaskSerializer < ActiveModel::Serializer
   attributes :id, :name, :note, :is_done, :priority, :user_id, :execution_date,
              :image_url, :lists, :subtasks, :tag, :color
 
-
   def lists
-    self.object.tasks_lists.map do |item|
+    object.tasks_lists.map do |item|
       {
         id: item.list.id,
         title: item.list.title

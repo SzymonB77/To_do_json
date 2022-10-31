@@ -5,7 +5,7 @@ module Api
     class SubtasksController < ApplicationController
       before_action :authenticate_user!
       before_action :set_subtask, only: %i[update destroy]
-      
+
       # POST /tasks/:id/subtasks
       def create
         @task = Task.find(params[:task_id])
@@ -19,7 +19,7 @@ module Api
       end
 
       # PATCH/PUT /tasks/:id/subtasks/:id
-      
+
       def update
         if @subtask.update(subtask_params)
           render json: @subtask
