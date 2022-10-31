@@ -12,4 +12,20 @@ class TaskSerializer < ActiveModel::Serializer
       }
     end
   end
+
+  def note
+    object.note || 'none'
+  end
+
+  def priority
+    object.priority || 'unknown'
+  end
+
+  def subtask
+    object.subtask || 'none'
+  end
+
+  def tag
+    object.tag || 'none'
+  end
 end
